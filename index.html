@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+    <header>
+        <h1>Rock Paper Scissors!</h1>
+        <h3>Play the computer and see who wins!</h3>
+        <ul>
+            <li>Computer Score: <span id ="compScore_label">0</span></li>
+            <li>User Score: <span id ="userScore_label">0</span></li>
+        </ul>
+
+    </header>
+
+    <div id="userButtons">
+            <img id = "rockButton" src="rock.png" alt="Rock">
+            <img id = "paperButton" src="paper.png" alt="Paper">
+            <img id = "scissorsButton" src="scissors.png" alt="Paper">
+    </div>
+
+    <div id="computer">
+            <img id="computerImg" src="computer.png">
+    </div>
+    <h3 id="whoWon"></h3>
+    <script>
+        var wonTag = document.getElementById("whoWon");
+        var computerImg = document.getElementById("computerImg");
+        var userScore = 0;
+        var compScore = 0;
+        const rockButton = document.getElementById("rockButton");
+        const paperButton = document.getElementById("paperButton");
+        const scissorsButton = document.getElementById("scissorsButton");
+        rockButton.onclick = function () {
+            runGame(0);
+        }
+        paperButton.onclick = function () {
+            runGame(1);
+        }
+        scissorsButton.onclick = function () {
+            runGame(2);
+        }
+
+        function runGame(userPlay) {
+            var computerPlay = getRandomInt(0, 3);
+            computerImageSwitch(computerPlay);
+            var winner = checkWinner(userPlay, computerPlay);
+            if (winner=="user"){
+                userScore ++;
+                userScore_label.textContent = userScore;
+                //alert("The winner is the User!");
+                wonTag.textContent = ("The User won this round!")
+            }else if (winner=="comp"){
+                compScore ++;
+                compScore_label.textContent = compScore;
+                //alert("The winner is the Computer :,(");
+                wonTag.textContent = ("The Computer won this round :,(")
+            }else if (winner=="tie"){
+                //alert("The game is a tie!")
+                wonTag.textContent = ("This round is a tie.")
+            }
+        }
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
+
+        function checkWinner(user, comp) {
+            if (user == comp) {
+                return ("tie");
+            } else if (user == 0 && comp == 2) {
+                return ("user");
+            } else if (user == 1 && comp == 0) {
+                return ("user");
+            } else if (user == 2 && comp == 1) {
+                return ("user");
+            } else if (comp == 0 && user == 2) {
+                return ("comp");
+            } else if (comp == 1 && user == 0) {
+                return ("comp");
+            } else if (comp == 2 && user == 1) {
+                return ("comp")
+            }
+        }
+
+        function computerImageSwitch(pick){
+            if (pick==0){
+                computerImg.setAttribute("src","rock.png")
+            }
+            else if (pick==1){
+                computerImg.setAttribute("src","paper.png")
+            }
+            else if (pick==2){
+                computerImg.setAttribute("src","scissors.png")
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+<!--
+    0 beats 2
+    1 beats 0
+    2 beats 1
+-->

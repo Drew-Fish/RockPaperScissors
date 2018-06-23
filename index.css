@@ -1,0 +1,40 @@
+header h1,h3{
+    display:flex;
+    justify-content: center;   
+    text-align: center;
+}
+ul{
+    list-style: none;
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:space-around;
+    text-align: center;
+    margin:0;
+    padding:0;
+}
+li{
+    text-align: center;
+}
+#userButtons{
+    display:flex;
+    justify-content: space-around;
+    padding: 0;
+    margin-top: 15px;
+}
+#userButtons img{
+    border:2px solid black;
+}
+#computer{
+    display:flex;
+    justify-content: center;
+    padding: 0;
+    margin-top: 45px;
+}
+#computer img{
+    border: 2px solid black;
+}
+#whoWon{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
